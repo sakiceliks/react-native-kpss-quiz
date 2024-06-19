@@ -18,36 +18,30 @@ export default function AboutScreen({ correctAnswers, navigation }) {
       <View style={[styles.container, { backgroundColor: colors.dark }]}>
          {(Platform.OS !== 'web')&& <View style={styles.logoContainer}>
             <Text style={[styles.logo, { color: colors.light }]}>
-               About
+               Hakkımda
             </Text>
          </View>}
 
          <ScrollView style={[styles.settingContainer, { backgroundColor: colors.dark, borderColor: colors.light }]}>
             <Text style={[styles.settingText, { color: colors.light, }]} onPress={() => {
             }}>
-<Text style={{fontFamily: 'Poppins-Bold', }}>KTK: Key Teaching Knowledge.</Text> Your ultimate practice app of English language teaching methodology and theory. Practice your teaching knowledge with the essential themes and issues related to TEFL/TESOL. 
+<Text style={{fontFamily: 'Poppins-Bold', }}>KPSS: Temel Öğretim Bilgisi</Text>
 {'\n'}{'\n'}
-<Text style={{fontFamily: 'Poppins-Bold', }}>Got feedback?</Text> Help us improve the app by emailing your concerns to:  <A style={{textDecorationLine: 'underline'}} href="mailto:yobahmad@gmail.com">yobahmad@gmail.com</A> or Facebook: <A style={{textDecorationLine: 'underline'}} href="https://www.facebook.com/profile.php?id=100002042885144">Youssef Baahmad</A>
+
+Öğretmenlik mesleği ve alan bilgisi için nihai hazırlık uygulamanız. KPSS'de başarılı olmak için gerekli temel temalar ve konularla bilginizi pekiştirin.
 {'\n'}{'\n'}
-<Text style={{fontFamily: 'Poppins-Bold', }}>Credits: </Text>{'\n'}
-All content so far comes from the Moroccan Ministry of Education official teacher exams (2016-2021) with slight adaptations. Thanks to the teams who designed the exams.  
-{'\n'}{'\n'}Thanks also go to the following S5 English Department students at the ENS (Ecole Normale Superieure, Rabat) whose efforts made this app see the day earlier than expected. Their dedicated collaborative work typing, editing and answering the exams has been valuable.   
+
+KPSS: Temel Öğretim Bilgisi. Öğretmenlik mesleği ve alan bilgisi için nihai hazırlık uygulamanız. KPSS'de başarılı olmak için gerekli temel temalar ve konularla bilginizi pekiştirin.
+<Text style={{fontFamily: 'Poppins-Bold', }}>
 {'\n'}{'\n'}
-<Text style={{fontFamily: 'Poppins-Italic', textAlign: 'center'}}>
-Ait Allal Chaimae{'\n'}
-Amzil Nada{'\n'}
-Brini Chaimae {'\n'}
-Faiz Oumaima{'\n'}
-Laghmiri Khawla{'\n'}
-Laqibi Chaimae {'\n'}
-Lasri Salma {'\n'}
-Moushil Marwa {'\n'}
-Naimi Laila {'\n'}
-Ounaceur Mohamed.{'\n'}
-</Text>
+
+
+Geri bildiriminiz bizim için önemli! </Text> 
+
 {'\n'}{'\n'}
-Many thanks also go to the smart developer and designer, <Text style={{fontFamily: 'Poppins-Italic', }}>Essam Abdelghany</Text>. He is the mastermind behind developing this app and its website.
-{'\n'}
+
+Uygulamayı geliştirmemize yardımcı olmak için görüşlerinizi kpss@sakicelik.com.tr adresine iletebilirsiniz: KPSS Hazırlık  <A style={{textDecorationLine: 'underline'}} href="mailto:kpss@sakicelik.com.tr">kpss@sakicelik.com.tr</A>
+
 
             </Text>
 
@@ -87,7 +81,7 @@ const styles = StyleSheet.create({
    settingText: {
       fontFamily: 'Poppins-Regular',
       fontSize: 17,
-      textAlign: 'justify',
+      textAlign: 'center',
       padding: 5
    }
 

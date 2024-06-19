@@ -39,7 +39,7 @@ export default function HomeScreen({ navigation }) {
             <TouchableOpacity>
                <Text style={[styles.playText, { color: colors.dark, }]} onPress={
                   ()=> navigation.navigate('QuizScreen')}>
-                  Play
+                  Türk Tarihi
                </Text>
             </TouchableOpacity>
          </View>

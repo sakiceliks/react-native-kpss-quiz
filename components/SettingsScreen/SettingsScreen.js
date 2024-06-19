@@ -25,7 +25,7 @@ export default function SettingsScreen() {
       <View style={[styles.container, {backgroundColor: colors.dark}]}>
          {(Platform.OS !== 'web')&&<View style={styles.logoContainer}>
             <Text style={[styles.logo, { color: colors.light }]}>
-               Settings
+               Ayarlar
             </Text>
          </View>}
          <View style={{marginHorizontal: 20, padding: 5}}>
@@ -57,7 +57,7 @@ export default function SettingsScreen() {
                   setColorIndex((colorIndex + 1)%(colorCodes.length))
                   }
                   }}>
-                Color Pallete: {colorCodes[colorIndex]} 
+                Renk Paleti: {colorCodes[colorIndex]} 
                </Text>
             </TouchableOpacity>
          </View>
@@ -66,21 +66,20 @@ export default function SettingsScreen() {
                <Text style={[styles.settingText, { color: colors.dark, }]} onPress={() => { 
                   setDiscoveryMode(!discoveryMode);
                }}>
-                  Change Theme With Every Question: {(discoveryMode) ? "On" : "Off"}
+                 Her Soruda Temayı Değiştir {(discoveryMode) ? "Açık" : "Kapalı"}
                </Text>
             </TouchableOpacity>
          </View>
          <View style={{marginHorizontal: 20, padding: 5}}>
             <Text style={[{ color: colors.light, fontSize: 20 }]}>
-               Other Options
-            </Text>
+Diğer Ayarlar            </Text>
          </View>
          <View style={[styles.settingContainer, { backgroundColor: colors.light, borderColor: colors.dark }]}>
             <TouchableOpacity>
                <Text style={[styles.settingText, { color: colors.dark, }]} onPress={() => { 
                   setRandomize(!randomize);
                }}>
-                  Randomize Upon Reset: {(randomize) ? "On" : "Off"}
+                  Sıfırlama Sonrası Rastgele: {(randomize) ? "Açık" : "Kapalı"}
                </Text>
             </TouchableOpacity>
          </View>
@@ -89,7 +88,7 @@ export default function SettingsScreen() {
                <Text style={[styles.settingText, { color: colors.dark, }]} onPress={() => { 
                   setAudio(!audio);
                }}>
-                  Audio: {(audio) ? "On" : "Off"}
+                  Ses: {(audio) ? "Açık" : "Kapalı"}
                </Text>
             </TouchableOpacity>
          </View>

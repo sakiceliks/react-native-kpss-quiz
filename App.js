@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useFonts } from 'expo-font';
 import * as Progress from 'react-native-progress';
 import HomeScreen from './components/HomeScreen/HomeScreen';
@@ -38,6 +38,7 @@ const AppWrapper = () => {
 
 function App() {
 
+
   const [fontsLoaded] = useFonts({
     'Poppins-Light': require('./assets/fonts/Poppins-Light.ttf'),
     'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
@@ -45,53 +46,43 @@ function App() {
     'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
     'Poppins-ExtraBoldItalic': require('./assets/fonts/Poppins-ExtraBoldItalic.ttf'),
     'Poppins-ExtraBold': require('./assets/fonts/Poppins-ExtraBold.ttf'),
-  });
-  const dispatch = useDispatch();
-
+  });  const dispatch = useDispatch();
   const newQuiz = useSelector(state => state.quiz.newQuiz);
   const randomize = useSelector(state => state.settings.randomize);
-  const audio = useSelector(state => state.settings.audio);
-  const [Entries, setEntries] = React.useState(OrderedEntries);
+  const shownQuestion = useSelector(state => state.quiz.shownQuestion);
+  const colors = useSelector(Colors);
+  const allColorsHelper = useSelector(state => state.settings.allColorsHelper);
 
+  const [Entries, setEntries] = useState([]); // API'den gelen veriler için state
+  const [correctAnswers, setCorrectAnswers] = useState([]);
 
   useEffect(() => {
-    if (newQuiz) {
-      dispatch(SetNewQuiz(false));
-      if (randomize) {
-        console.log('here')
-        const shuffledEntries = shuffle(OrderedEntries);
-        console.log(shuffledEntries[0])
-        setEntries(shuffledEntries);
-    }
-      else {
-        setEntries(OrderedEntries);
-      }
-    }
-  },[newQuiz]);
+      // API'den verileri çek
+      fetch('https://testapi.io/api/sakiceliks/quiz')
+          .then(response => response.json())
+          .then(data => {
+              setEntries(data); // Verileri state'e kaydet
+              setCorrectAnswers(data.map(({ correct }) => correct)); 
+          })
+          .catch(error => console.error('API Error:', error));
+  }, []); // Yalnızca bir kez çalışacak
 
-  // whenever Entries changes, apply the change
-    
+  useEffect(() => {
+      if (newQuiz) {
+          dispatch(SetNewQuiz(false));
+          setEntries(randomize ? shuffle(Entries) : Entries);
+      }
+  }, [newQuiz, randomize, Entries]); // Entries dependency
+
+  useEffect(() => {
+      dispatch(RotateColor());
+  }, [shownQuestion]);
 
   const totalCount = Entries.length;
 
-  const shownQuestion = useSelector(state => state.quiz.shownQuestion)
-  const [correctAnswers, setCorrectAnswers] = React.useState(Entries.map(({ correct }) => correct));
-  // whenever Entries changes or correctAnswers changes, apply the change
-  useEffect(() => {
-    setCorrectAnswers(Entries.map(({ correct }) => correct));
-  }, [Entries]);
-  const colors = useSelector(Colors)
-
-
-  const allColorsHelper = useSelector(state => state.settings.allColorsHelper)
-
-  useEffect(() => { 
-    dispatch(RotateColor()) }, [shownQuestion]);
-
   if (!fontsLoaded) {
-    return <Progress.CircleSnail color={['red', 'green', 'blue']} />
+      return <Progress.CircleSnail color={['red', 'green', 'blue']} />;
   }
-
   return (
     <>
       <StatusBar style={(allColorsHelper == 1) ? "dark" : "light"} />
@@ -125,7 +116,7 @@ function App() {
           <Stack.Screen name="StatsScreen" 
             options={{
               headerShown: (Platform.OS === 'web'),
-              title: 'Statistics',
+              title: 'İstatistikler',
               headerStyle: {
                 backgroundColor: colors.dark,
                 borderBottomWidth: 0,
@@ -144,7 +135,7 @@ function App() {
           <Stack.Screen name="SettingsScreen" 
             options={{
               headerShown: (Platform.OS === 'web'),
-              title: 'Settings',
+              title: 'Ayarlar',
               headerStyle: {
                 backgroundColor: colors.dark,
                 borderBottomWidth: 0,
@@ -164,7 +155,7 @@ function App() {
           <Stack.Screen name="AboutScreen" 
           options={{
             headerShown: (Platform.OS === 'web'),
-            title: 'About',
+            title: 'Hakkımda',
             headerStyle: {
               backgroundColor: colors.dark,
               borderBottomWidth: 0,
@@ -186,7 +177,7 @@ function App() {
           <Stack.Screen name="KategoriScreen" 
           options={{
             headerShown: (Platform.OS === 'web'),
-            title: 'Kategori',
+            title: 'Kategoriler',
             headerStyle: {
               backgroundColor: colors.dark,
               borderBottomWidth: 0,

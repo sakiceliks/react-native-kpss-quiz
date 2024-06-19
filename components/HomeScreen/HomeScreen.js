@@ -37,25 +37,24 @@ export default function HomeScreen({ navigation }) {
       <View style={[styles.container, {backgroundColor: colors.dark}]}>
          <View style={styles.logoContainer}>
             <Text style={[styles.logo, { color: colors.light }]}>
-               KTK
+            KPSS Bitirici       
+
             </Text>
             <Text style={[styles.logo, { color: colors.light, fontSize: 20, fontFamily: 'Poppins-Bold' }]}>
-              Key Teaching Knowledge
-            </Text>
+          </Text>
          </View>
          {<View style={styles.quotesContainer}>
             <Text style={[styles.quotesText, {color: colors.light}]}>
                {/* {quotesList[randomQuoteIndex]}
                {"\n"}
                —{authorList[randomQuoteIndex]} */}
-              Some English Learners are Destined to be English Teachers
             </Text>
          </View>}
          <View style={[styles.playContainer, { backgroundColor: colors.light, borderColor: colors.dark }]}>
             <TouchableOpacity>
                <Text style={[styles.playText, { color: colors.dark, }]} onPress={
                   ()=> navigation.navigate('KategoriScreen')}>
-                  Play
+                  Başla
                </Text>
             </TouchableOpacity>
          </View>
@@ -65,21 +64,21 @@ export default function HomeScreen({ navigation }) {
                   navigation.navigate('StatsScreen')
                   setComingFromHome(true) }
                   }>
-                  My Statistics
+                  İstatistiklerim
                </Text>
             </TouchableOpacity>
          </View>
          <View style={[styles.playContainer, { backgroundColor: colors.light, borderColor: colors.dark }]}>
             <TouchableOpacity>
                <Text style={[styles.playText, { color: colors.dark, }]} onPress={()=> navigation.navigate('SettingsScreen')}>
-                  Settings
+                  Ayarlar
                </Text>
             </TouchableOpacity>
          </View>
          <View style={[styles.playContainer, { backgroundColor: colors.light, borderColor: colors.dark }]}>
             <TouchableOpacity>
                <Text style={[styles.playText, { color: colors.dark, }]} onPress={()=> navigation.navigate('AboutScreen')}>
-                  About
+                  Hakkımda
                </Text>
             </TouchableOpacity>
          </View>

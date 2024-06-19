@@ -6,7 +6,7 @@ const initialState = {
    colorIndex: 0,
    discoveryMode: false,
    comingFromHome: true,
-   allColors: lightColors,
+   allColors: darkColors,
    allColorsHelper: 1,
    randomize: false,
    audio: true,
